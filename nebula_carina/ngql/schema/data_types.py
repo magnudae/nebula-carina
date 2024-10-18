@@ -115,6 +115,20 @@ class FixedString(DataType):
     def value2db_str(cls, value):
         return 'NULL' if value is None else f'"{value}"'
 
+class JSONString(DataType):
+    python_data_type = str
+
+    @classmethod
+    def value2db_str(cls, value):
+        return "NULL" if value is None else f"'{value}'"
+
+
+class EnumType(DataType):
+    python_data_type = str
+
+    @classmethod
+    def value2db_str(cls, enum_value):
+        return "NULL" if enum_value is None else f'"{enum_value.value}"'
 
 class Bool(DataType):
     python_data_type = bool
